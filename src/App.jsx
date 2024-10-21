@@ -3,18 +3,19 @@ function App(){
   
   //prop are passed as children 
   return( 
-  <div style={{display:"flex"}}>
-    
-     <Card>
-      <div style={{color:"green"}}>
-        What do you want to post <br></br>
-        <input type={"text"} />
-      </div>
+    <div>
+      <Card>
+          <h2>Card Title</h2>
+          <p>This is some content inside the card.</p>
       </Card>
       <Card>
-        Hiii therer friends.....
+          <h2>Another Card</h2>
+          <p>This card has different content!</p>
+          <input type={"text"}/>
+          <br></br>
+          <button>input</button>
       </Card>
-  </div>
+    </div>
   );
 }
 
@@ -22,12 +23,17 @@ function App(){
 //this is the children cards this two cards are rendered in the entire page
 function Card({children})
 {
-
-  return (<div style={{backgroundColor:"black",borderRadius:"23px",color:"white",padding:10,margin:10}}>
-
-  {children}
-
-  </div>);
+  return (
+    <div style={{
+        border: '1px solid #ccc',
+        borderRadius: '5px',
+        padding: '20px',
+        margin: '10px',
+        boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.1)',
+    }}>
+        {children}
+    </div>
+);
 }
 
 
