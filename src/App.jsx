@@ -1,40 +1,21 @@
 import './App.css'
 function App(){ 
-  
-  //prop are passed as children 
-  return( 
+  return(
     <div>
-      <Card>
-          <h2>Card Title</h2>
-          <p>This is some content inside the card.</p>
-      </Card>
-      <Card>
-          <h2>Another Card</h2>
-          <p>This card has different content!</p>
-          <input type={"text"}/>
-          <br></br>
-          <button>input</button>
-      </Card>
+      {
+        [
+          <Todo key={1} title={"go to gym"} done={false} />,<Todo key={2} title={"eat food"} done={false} />
+        ]
+      }
     </div>
-  );
+  )
+  
 }
 
-
-//this is the children cards this two cards are rendered in the entire page
-function Card({children})
+function Todo({title,done})
 {
-  return (
-    <div style={{
-        border: '1px solid #ccc',
-        borderRadius: '5px',
-        padding: '20px',
-        margin: '10px',
-        boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.1)',
-    }}>
-        {children}
-    </div>
-);
+  return <div>
+    {title} - {done ? "Done!":" Not done"}
+  </div>
 }
-
-
 export default App;
