@@ -1,33 +1,34 @@
 import './App.css'
-import { useState,useEffect } from 'react';
-function App()
-{ 
-  return 
-  <div>
-      <Timer />
-  </div>
-}
-
-const Timer = () =>
-{
-  const [seconds,setSeconds]=useState(0);
-
-  useEffect(()=>{
-    let clock = setInterval(function(){
-      setSeconds(prev=>prev+1);
-    },1000)
+function App(){ 
+  
+  //prop are passed as children 
+  return( 
+  <div style={{display:"flex"}}>
     
-
-    //cleanup function
-
-    return function()
-    {
-      clearInterval(clock);
-    }
-    //unsubscribing from the event and clearing it mers
-
-  },[])
-
-  return <div>{seconds}seconds elapsed</div>
+     <Card>
+      <div style={{color:"green"}}>
+        What do you want to post <br></br>
+        <input type={"text"} />
+      </div>
+      </Card>
+      <Card>
+        Hiii therer friends.....
+      </Card>
+  </div>
+  );
 }
+
+
+//this is the children cards this two cards are rendered in the entire page
+function Card({children})
+{
+
+  return (<div style={{backgroundColor:"black",borderRadius:"23px",color:"white",padding:10,margin:10}}>
+
+  {children}
+
+  </div>);
+}
+
+
 export default App;
