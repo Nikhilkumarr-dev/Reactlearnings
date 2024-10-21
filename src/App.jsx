@@ -2,26 +2,56 @@ import './App.css'
 import { useState,useEffect } from 'react';
 function App()
 {
-  const [count,setCount]=useState(0);
+  const [currentTab,setCurrentTab]=useState(1)
+  const [tabData,setTabData]=useState({});
+  const [loading,setLoading]=useState(true);
+
+  useEffect(function(){
+    //sending a backend request to get data from this tab
+    // console.log("send request to backend to get data for the tab"+currentTab);
+    setLoading(true);
+    fetch("https://jsonplaceholder.typicode.com/todos/" + currentTab)
+    .then( async res=>{
+      const json =await res.json();
+      setTabData(json);
+      setLoading(false);
+    })
+       
+  },[currentTab])
+
+  //this is the dependency array this effect runs whenever the dependency changes 
   
-  function increaseCount()
-  {
-    setCount(currentValue=>currentValue+1);
-  }
+  return <div>
+    <button  onClick={function()
+      {
+        setCurrentTab(1);
+      }
+    }  style={{color: currentTab==1 ? "red":'black'}}>1</button>
+    <button onClick={function()
+      {
+        setCurrentTab(2);
+      }
+    } 
+    style={{color:currentTab== 2 ? "red": "black"}}>2</button>
+    <button
+    onClick={function()
+      {
+        setCurrentTab(3);
+      }
+    }
+     style={{color:currentTab==3? "red":"black"}}>3</button>
+    <button
+     onClick={function()
+      {
+        setCurrentTab(4);
+      }
+    }
+     style={{color:currentTab==4? "red":"black"}}>4</button>
 
-  useEffect(function()
-  {
-    console.log("above set interval");
-    //this below is the sideeffect
-    setInterval(increaseCount,1000);  
-  },[])
+     <br />
 
-  //if we want to use state variable in useeffect we add the state in the depenency array
-
-  return (
-  <div >
-      {count}
+     {loading ? "loading>>>" : tabData.title}
+     
   </div>
-  )
 }
 export default App;
