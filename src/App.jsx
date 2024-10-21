@@ -1,33 +1,27 @@
 import './App.css'
-import { PostComponent } from './post';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 function App()
 {
-  let [count,setCount]=useState(1);
-
-  function add()
+  const [count,setCount]=useState(0);
+  
+  function increaseCount()
   {
-    setCount(count+1)
+    setCount(currentValue=>currentValue+1);
   }
 
-  function remove()
+  useEffect(function()
   {
-    setCount(count-1);
+    console.log("above set interval");
+    //this below is the sideeffect
+    setInterval(increaseCount,1000);  
+  },[])
 
-  }
+  //if we want to use state variable in useeffect we add the state in the depenency array
 
   return (
-  <div style={{display:"flex"}}>
-      <div style={{background:"red",borderRadius:20,widhth:20,height:25,paddingLeft:10,paddingRight:10,paddingTop:5,marginLeft:12}}
-      >
+  <div >
       {count}
-      </div>
-    <div>
-      <img src={"https://cdn2.iconfinder.com/data/icons/linkedin-ui-flat/48/LinkedIn_UI-06-512.png"} width={50}/> 
-      <div><button onClick={add}>MyNetwork</button></div>
-      <div><button onClick={remove}>Delete</button></div>
-    </div>
   </div>
   )
 }
-export default App
+export default App;
